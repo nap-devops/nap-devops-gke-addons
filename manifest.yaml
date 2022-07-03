@@ -1,0 +1,67 @@
+config:
+  defaultChartId: cert-manager
+
+vars: {}
+
+charts:
+  cert-manager:
+    chartUrl: https://charts.jetstack.io
+    version: 1.8.0
+
+  helm-prometheus-k8s:
+    chartUrl: https://its-software-services-devops.github.io/helm-prometheus-k8s/
+    version: 1.2.1
+
+  helm-grafana-k8s:
+    chartUrl: https://its-software-services-devops.github.io/helm-grafana-k8s/
+    version: 1.1.3
+
+  external-secrets:
+    chartUrl: https://charts.external-secrets.io
+    version: 0.4.4
+
+  argo-cd:
+    chartUrl: https://argoproj.github.io/argo-helm
+    version: 4.9.7
+
+copy:
+  - from: 00-configs/env-${ENV.ENVIRONMENT}.cfg
+    toFile: 00-configs/env.cfg
+
+infraIasc:
+  - valuesFiles: [02-deploy/prometheus/prometheus-alert-config.yaml]
+    alias: rendered-prometheus-config
+    chartId: helm-prometheus-k8s
+    toDir: 02-deploy/prometheus
+    values: 
+      # should be moved to secret file instead
+      - --set-string alertmanager.generic.config.alertNoti.slackUrl=${ENV.SLACK_URL}
+
+  - valuesFiles: [02-deploy/prometheus/grafana-k8s.yaml]
+    alias: rendered-grafana-k8s
+    chartId: helm-grafana-k8s
+    toDir: 02-deploy/prometheus
+    namespace: monitoring
+    values: []
+
+  - valuesFiles: []
+    alias: rendered-k8s-external-secrets
+    chartId: external-secrets
+    toDir: 02-deploy/k8s-external-secrets
+    namespace: external-secrets
+    values:
+      - --set installCRDs=true
+
+  - valuesFiles: [01-setup/cert-manager/cert-manager.yaml]
+    alias: rendered-cert-manager
+    chartId: cert-manager
+    toDir: 01-setup/cert-manager
+    namespace: cert-manager
+
+#  - valuesFiles: [02-deploy/argocd/argocd.yaml]
+#    alias: rendered-argocd
+#    chartId: argo-cd
+#    toDir: 02-deploy/argocd
+#    namespace: argocd
+#    values:
+#      - --include-crds

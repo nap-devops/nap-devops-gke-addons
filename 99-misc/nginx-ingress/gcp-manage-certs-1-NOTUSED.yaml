@@ -1,0 +1,14 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: gcp-managed-cert-nginx-1
+spec:
+  domains:
+    - 'grafana-k8s.<<VAR_NGINX_DOMAIN>>'
+    - 'grafana-loki.<<VAR_NGINX_DOMAIN>>'
+    - 'grafana-edh.<<VAR_NGINX_DOMAIN>>'
+    - 'cortex.<<VAR_NGINX_DOMAIN>>'
+    - 'loki-edh.<<VAR_NGINX_DOMAIN>>'
+    - 'cakeshop.<<VAR_NGINX_DOMAIN>>'
+    - 'api-econsent.<<VAR_NGINX_DOMAIN>>'
+    - 'form-econsent.<<VAR_NGINX_DOMAIN>>'

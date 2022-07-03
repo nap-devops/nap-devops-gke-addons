@@ -1,0 +1,52 @@
+---
+#Loki stack fro cluster container logs
+loki-stack:
+  enabled: true
+  fullnameOverride: loki-cluster-logging
+
+  loki:
+    image:
+      tag: 2.3.0
+    persistence:
+      enabled: true
+
+  grafana:
+    envFromSecret: google-oidc-secret
+    envRenderSecret: {}
+
+    image:
+      tag: 8.3.3
+
+    grafana.ini:
+      server:
+        root_url: https://grafana-loki.<<VAR_NGINX_DOMAIN>>
+
+      auth.generic_oauth:
+        name: Google
+        enabled: true
+        allow_sign_up: true
+        team_ids:
+        allowed_organizations:
+        client_id: ${GOOGLE_CLIENT_ID}
+        client_secret: ${GOOGLE_CLIENT_SECRET}
+        scopes: https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email
+        auth_url: https://accounts.google.com/o/oauth2/auth
+        token_url: https://accounts.google.com/o/oauth2/token
+        api_url: https://www.googleapis.com/oauth2/v1/userinfo
+        role_attribute_path: to_string('Editor')
+        allowed_domains: everapp.io
+
+promtail:
+  enabled: true
+  fullnameOverride: loki-sec-promtail
+  config:
+    clients:
+      - url: https://loki-audit.sec.devops.everapp.io/loki/api/v1/push
+        tls_config:
+          insecure_skip_verify: true
+        basic_auth: #Let's hard code for now
+          username: Z5vSYKY7n65HmUQxKgz
+          password: WT5yyhbPRH8Cs
+
+  extraArgs:
+    - -client.external-labels=cluster=<<VAR_CLUSTER_NAME>>,project=<<VAR_PROMETHEUS_SECRET_PROJECT>>,platform=gke

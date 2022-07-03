@@ -1,0 +1,18 @@
+---
+fullnameOverride: ingress-nginx-restrict
+nameOverride: ingress-nginx-restrict #This one really important if we have 2 ingresses in cluster
+
+controller:
+  service:
+    enabled: true
+    type: ClusterIP
+    annotations:
+      cloud.google.com/neg: '{"ingress": true}'
+      cloud.google.com/backend-config: '{"default": "nginx-hc-config-restrict"}'
+      cloud.google.com/app-protocols: '{"https":"HTTPS", "http":"HTTP"}'
+
+  ingressClassResource:
+    name: restrict-nginx  # default: nginx
+    enabled: true
+    default: false
+    controllerValue: "k8s.io/ingress-nginx-restrict"  # default: k8s.io/ingress-nginx

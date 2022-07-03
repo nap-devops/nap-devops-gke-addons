@@ -1,0 +1,19 @@
+alertmanager:
+  generic:
+    namespace: monitoring
+    enabled: false #if true, the AlertManager will not be able to connect
+    createSecret: true
+    config:
+      alertNoti:
+        slackUrl: ''
+        channel: '#monitoring-devops-generic'
+        discardRules:
+          - alertname: 'CPUThrottlingHigh'
+            namespace: 'monitoring'
+          - alertname: 'CPUThrottlingHigh'
+            namespace: 'kube-system'            
+          - alertname: 'KubeControllerManagerDown|KubeSchedulerDown'
+
+prometheus: {}
+
+alertRules: {}
