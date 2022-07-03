@@ -1,0 +1,20 @@
+---
+fullnameOverride: argocd
+
+#global:
+#  image:
+#    repository: asia.gcr.io/evermed-devops-prod/devops/argocd-custom
+#    tag: "v2.2.0-1"
+#  imagePullSecrets:
+#    - name: gcloud-gcr-secret
+
+
+#controller:
+#  env:
+#    - name: ARGOCD_BRANCH_NAME
+#      value: "development"
+
+#server:  
+#  env:
+#    - name: ARGOCD_BRANCH_NAME
+#      value: "development"  

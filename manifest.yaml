@@ -58,10 +58,10 @@ infraIasc:
     toDir: 01-setup/cert-manager
     namespace: cert-manager
 
-#  - valuesFiles: [02-deploy/argocd/argocd.yaml]
-#    alias: rendered-argocd
-#    chartId: argo-cd
-#    toDir: 02-deploy/argocd
-#    namespace: argocd
-#    values:
-#      - --include-crds
+  - valuesFiles: [02-deploy/argocd/argocd.yaml]
+    alias: rendered-argocd
+    chartId: argo-cd
+    toDir: 02-deploy/argocd
+    namespace: argocd
+    values:
+      - --include-crds

@@ -57,8 +57,8 @@ if [ "$ACTION" = 'deploy' ]; then
     fi 
 
     # Moved this to last
-#    if [[ $COMPONENT =~ ^(argocd|all)$ ]]; 
-#    then
-#        cd 02-deploy/argocd; ./deploy-argocd.bash; cd ${CWD}
-#    fi
+    if [[ $COMPONENT =~ ^(argocd|all)$ ]]; 
+    then
+        cd 02-deploy/argocd; ./deploy-argocd.bash; cd ${CWD}
+    fi
 fi
