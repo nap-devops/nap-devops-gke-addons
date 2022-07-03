@@ -22,6 +22,7 @@ if [ -z "$COMPONENT" ]; then
 fi
 
 export ROOT_PATH=$(pwd); . ./98-utils/load-env.bash 'no-need-now'
+gcloud container clusters get-credentials ${VAR_CLUSTER_NAME} --zone asia-southeast1-b --project ${VAR_PROMETHEUS_SECRET_PROJECT}
 
 kubectl get nodes
 
