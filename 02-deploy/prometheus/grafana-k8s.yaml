@@ -17,7 +17,7 @@ grafana:
       scopes: https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email
       auth_url: https://accounts.google.com/o/oauth2/auth
       token_url: https://accounts.google.com/o/oauth2/token
-      allowed_domains: everapp.io
+      allowed_domains: napbiotec.io
       role_attribute_path: to_string('Editor')
       #allowed_groups: developer
       #role_attribute_path: contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'developer') && 'Editor' || 'Viewer'
