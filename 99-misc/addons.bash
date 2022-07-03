@@ -12,7 +12,7 @@ ENVIRONMENT_ALIAS=$1
 BRANCH=develop
 ENVIRONMENT=development
 PROJECT=evermed-edh-nonprod
-SLACK_URL="https://hooks.slack.com/services/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"
+SLACK_URL="https://hooks.slack.com/services/ssssss/ffffff/"
 
 if [ "${ENVIRONMENT_ALIAS}" == "dev" ]; then
     BRANCH=development
@@ -20,7 +20,7 @@ if [ "${ENVIRONMENT_ALIAS}" == "dev" ]; then
 elif [ "${ENVIRONMENT_ALIAS}" == "prod" ]; then
     BRANCH=production
     ENVIRONMENT=production
-    SLACK_URL="https://hooks.slack.com/services/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"
+    SLACK_URL="https://hooks.slack.com/services/sssssddd/sssss/ddddd"
     PROJECT=evermed-edh-prod
 fi
 
