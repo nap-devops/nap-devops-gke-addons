@@ -32,4 +32,6 @@ sed -i "s#<<VAR_ENVIRONMENT>>#${VAR_ENVIRONMENT}#g" ${OUTPUT_FILE}
 kubectl apply -f ${OUTPUT_FILE} -n ${NS}
 
 #### ArgoCD Application ####
-kubectl apply -f bootstrap-app.yaml -n ${NS}
+OUTPUT_FILE=bootstrap-app.yaml
+sed -i "s#<<VAR_ENVIRONMENT>>#${VAR_ENVIRONMENT}#g" ${OUTPUT_FILE}
+kubectl apply -f ${OUTPUT_FILE} -n ${NS}
