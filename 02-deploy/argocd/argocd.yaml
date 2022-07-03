@@ -8,8 +8,8 @@ server:
       connectors:
       - config:
           issuer: https://accounts.google.com
-          clientID: $google-oidc-secret:clientId
-          clientSecret: $google-oidc-secret:clientSecret
+          clientID: $google-oidc-secret:GOOGLE_CLIENT_ID
+          clientSecret: $google-oidc-secret:GOOGLE_CLIENT_SECRET
         type: oidc
         id: google
         name: Google
