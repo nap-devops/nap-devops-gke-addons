@@ -16,10 +16,9 @@ OUTPUT_FILE=argocd-ing.yaml
 sed -i "s#<<VAR_NGINX_DOMAIN>>#${VAR_NGINX_DOMAIN}#g" ${OUTPUT_FILE}
 kubectl apply -f ${OUTPUT_FILE} -n ${NS}
 
-#OUTPUT_FILE=google-oidc-secret.yaml
-#sed -i "s#<<VAR_PROMETHEUS_SECRET_PROJECT>>#${VAR_PROMETHEUS_SECRET_PROJECT}#g" ${OUTPUT_FILE}
-#sed -i "s#<<VAR_PROMETHEUS_SECRET_NAME>>#${VAR_PROMETHEUS_SECRET_NAME}#g" ${OUTPUT_FILE}
-#kubectl apply -f ${OUTPUT_FILE} -n ${NS}
+OUTPUT_FILE=google-oidc-secret.yaml
+sed -i "s#<<VAR_PROMETHEUS_SECRET_NAME>>#${VAR_PROMETHEUS_SECRET_NAME}#g" ${OUTPUT_FILE}
+kubectl apply -f ${OUTPUT_FILE} -n ${NS}
 
 #ssh-keygen -t ed25519
 SSH_KEY_BASE64=$(cat ${HOME}/.ssh/id_ed25519 | base64 -w0)
