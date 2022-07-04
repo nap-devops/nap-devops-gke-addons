@@ -18,6 +18,3 @@ server:
         type: oidc
         id: google
         name: Google
-
-#$google-oidc-secret:GOOGLE_CLIENT_ID        
-#$google-oidc-secret:GOOGLE_CLIENT_SECRET
