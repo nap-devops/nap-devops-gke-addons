@@ -1,6 +1,11 @@
 ---
 fullnameOverride: argocd
 
+dex:
+  envFrom:
+    - secretRef:
+        name: google-oidc-secret
+
 server:  
   config:
     url: https://argocd.<<VAR_NGINX_DOMAIN>>
@@ -8,8 +13,8 @@ server:
       connectors:
       - config:
           issuer: https://accounts.google.com
-          clientID: aaasdfsdfsdfsdf
-          clientSecret: test-client-secret
+          clientID: $GOOGLE_CLIENT_ID
+          clientSecret: $GOOGLE_CLIENT_SECRET
         type: oidc
         id: google
         name: Google
