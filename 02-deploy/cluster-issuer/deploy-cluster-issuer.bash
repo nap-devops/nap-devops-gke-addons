@@ -24,4 +24,5 @@ kubectl create secret generic ${SECRET} \
 OUTPUT_FILE=cluster-issuer.yaml
 sed -i "s#<<VAR_CLOUD_DNS_PROJECT>>#${VAR_CLOUD_DNS_PROJECT}#g" ${OUTPUT_FILE}
 sed -i "s#<<VAR_LETENCRYPT_SERVER>>#${VAR_LETENCRYPT_SERVER}#g" ${OUTPUT_FILE}
+sed -i "s#<<VAR_CLOUD_DNS_INFRA_PROJECT>>#${VAR_CLOUD_DNS_INFRA_PROJECT}#g" ${OUTPUT_FILE}
 kubectl apply -f ${OUTPUT_FILE} -n ${NS}
