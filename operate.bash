@@ -38,6 +38,11 @@ if [ "$ACTION" = 'setup' ]; then
     then
         cd 01-setup/cert-manager; ./deploy-cert-manager.bash; cd ${CWD}
     fi
+
+    if [[ $COMPONENT =~ ^(strimzi|all)$ ]]; 
+    then
+        cd 01-setup/strimzi; ./deploy-strimzi.bash; cd ${CWD}
+    fi    
 fi
 
 if [ "$ACTION" = 'deploy' ]; then
