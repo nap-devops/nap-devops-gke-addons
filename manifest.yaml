@@ -24,6 +24,10 @@ charts:
     chartUrl: https://argoproj.github.io/argo-helm
     version: 4.9.7
 
+  strimzi-kafka-operator:
+    chartUrl: https://strimzi.io/charts/
+    version: 0.32.0
+
 copy:
   - from: 00-configs/env-${ENV.ENVIRONMENT}.cfg
     toFile: 00-configs/env.cfg
@@ -65,3 +69,11 @@ infraIasc:
     namespace: argocd
     values:
       - --include-crds
+
+  - valuesFiles: [01-setup/strimzi/strimzi.yaml]
+    alias: rendered-strimzi
+    chartId: strimzi-kafka-operator
+    toDir: 01-setup/strimzi
+    namespace: strimzi
+    values: []
+    #  - --include-crds
