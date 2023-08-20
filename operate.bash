@@ -29,10 +29,10 @@ kubectl get nodes
 CWD=$(pwd)
 
 if [ "$ACTION" = 'setup' ]; then
-    if [[ $COMPONENT =~ ^(prometheus|all)$ ]]; 
-    then
-        cd 01-setup/prometheus; ./setup-prometheus.bash; cd ${CWD}
-    fi
+    #if [[ $COMPONENT =~ ^(prometheus|all)$ ]]; 
+    #then
+    #    cd 01-setup/prometheus; ./setup-prometheus.bash; cd ${CWD}
+    #fi
 
     if [[ $COMPONENT =~ ^(cert-manager|all)$ ]]; 
     then
@@ -56,10 +56,10 @@ if [ "$ACTION" = 'deploy' ]; then
         cd 02-deploy/cluster-issuer; ./deploy-cluster-issuer.bash; cd ${CWD}
     fi
 
-    if [[ $COMPONENT =~ ^(prometheus|all)$ ]]; 
-    then
-        cd 02-deploy/prometheus; ./deploy-prometheus-config.bash; cd ${CWD}
-    fi 
+    #if [[ $COMPONENT =~ ^(prometheus|all)$ ]]; 
+    #then
+    #    cd 02-deploy/prometheus; ./deploy-prometheus-config.bash; cd ${CWD}
+    #fi 
 
     # Moved this to last
     if [[ $COMPONENT =~ ^(argocd|all)$ ]]; 
