@@ -22,7 +22,7 @@ charts:
 
   argo-cd:
     chartUrl: https://argoproj.github.io/argo-helm
-    version: 4.9.7
+    version: 5.43.4
 
   strimzi-kafka-operator:
     chartUrl: https://strimzi.io/charts/
